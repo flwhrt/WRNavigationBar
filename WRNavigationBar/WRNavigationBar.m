@@ -553,6 +553,9 @@ static int wrPushDisplayCount = 0;
 
 #pragma mark - deal the gesture of return
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
+    if ([[UIDevice currentDevice].systemVersion doubleValue] >= 13.0) {
+        return YES;
+    }
     __weak typeof (self) weakSelf = self;
     id<UIViewControllerTransitionCoordinator> coor = [self.topViewController transitionCoordinator];
     if ([coor initiallyInteractive] == YES) {
